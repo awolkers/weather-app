@@ -1,3 +1,9 @@
+This project uses the [OpenWeatherMap](https://openweathermap.org/) API. Go to their website and sign up for an account to obtain an API key. Then create a `.env` file within the root of your project and add the following line of code:
+
+`REACT_APP_OPENWEATHERMAP_APPID=[your_own_api_key]`
+
+# More info
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
