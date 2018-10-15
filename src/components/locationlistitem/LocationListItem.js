@@ -1,8 +1,8 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import {formatTemp} from "../utils/weatherHelpers";
+import {formatTemp} from "../../utils/weatherHelpers";
 
-class Location extends React.Component {
+class LocationListItem extends React.Component {
 
     toggleLocation = event => {
         event.preventDefault()
@@ -25,4 +25,4 @@ class Location extends React.Component {
     }
 }
 
-export default Location;
+export default LocationListItem;

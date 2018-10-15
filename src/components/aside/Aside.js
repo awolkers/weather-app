@@ -1,7 +1,7 @@
 import React from "react";
 
-import LocationSearch from '../LocationSearch'
-import Locations from '../Locations'
+import LocationSearch from '../locationsearch/LocationSearch'
+import LocationList from '../locationlist/LocationList'
 
 class Aside extends React.Component {
     
@@ -12,12 +12,12 @@ class Aside extends React.Component {
                     searchLocation={this.props.searchLocation}
                     clearSearchResult={this.props.clearSearchResult}
                 />
-                <Locations
+                <LocationList
                     locations={this.props.searchResult}
                     toggleLocation={this.props.toggleLocation}
                     title="Search result"
                 />
-                <Locations
+                <LocationList
                     locations={this.props.locations}
                     title="Favorites"
                 />

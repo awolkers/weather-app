@@ -3,12 +3,12 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { searchLocations } from '../../utils/apiHelpers'
 
 
-import Header from '../Header'
+import Header from '../header/Header'
 import Aside from '../aside/Aside'
-import Dashboard from '../Dashboard'
-import Footer from '../Footer'
-import Settings from '../Settings'
-import LocationDashboard from '../LocationDashboard'
+import Footer from '../footer/Footer'
+import Dashboard from '../dashboard/Dashboard'
+import Settings from '../settings/Settings'
+import Location from '../location/Location'
 
 class App extends React.Component {
     state = {
@@ -72,24 +72,23 @@ class App extends React.Component {
         return (
             <div className="app">
                 <Header />
-                <Switch>
-                    <Route exact path="/" render={() => (
-                        <Dashboard/>
-                    )} />
-                    <Route exact path="/location/:locationId" render={({ match }) => (
-                        <div>
-                            <LocationDashboard
+                <main className="main">
+                    <Switch>
+                        <Route exact path="/" render={() => (
+                            <Dashboard/>
+                        )} />
+                        <Route exact path="/location/:locationId" render={({ match }) => (
+                            <Location
                                 locationId={match.params.locationId}
                                 locations={this.state.locations}
                             />
-
-                        </div>
-                    )} />
-                    <Route exact path="/settings" render={() => (
-                        <Settings/>
-                    )} />
-                    <Redirect to="/" />
-                </Switch>
+                        )} />
+                        <Route exact path="/settings" render={() => (
+                            <Settings/>
+                        )} />
+                        <Redirect to="/" />
+                    </Switch>
+                </main>
                 <Aside
                     locations={this.state.locations}
                     searchResult={this.state.searchResult}

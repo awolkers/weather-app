@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
-import Location from "./Location";
+import LocationListItem from "../locationlistitem/LocationListItem";
 
-class Locations extends React.Component {
+class LocationList extends React.Component {
 
     render() {
         const { title, locations, toggleLocation } = this.props
@@ -10,8 +10,8 @@ class Locations extends React.Component {
             return (
                 <Fragment>
                     <h2>{title}</h2>
-                    <ul className="searchresult">{Object.keys(locations).map(key =>
-                        <Location
+                    <ul className="locations-list">{Object.keys(locations).map(key =>
+                        <LocationListItem
                             key={key}
                             index={key}
                             location={locations[key]}
@@ -26,4 +26,4 @@ class Locations extends React.Component {
     }
 }
 
-export default Locations
+export default LocationList

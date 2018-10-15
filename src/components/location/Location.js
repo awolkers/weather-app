@@ -1,17 +1,16 @@
-import React from "react";
+import React, { Fragment } from 'react'
 
-class LocationDashboard extends React.Component {
+class Location extends React.Component {
 
     render() {
         console.log(this.props);
         return (
-            <div>
+            <Fragment>
                 <h2>Location Dashboard</h2>
                 <p>{this.props.locationId}</p>
-
-            </div>
+            </Fragment>
         )
     }
 }
 
-export default LocationDashboard;
+export default Location;

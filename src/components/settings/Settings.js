@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Fragment } from 'react'
 
 class Settings extends React.Component {
     
     render() {
         return (
-            <main className="main">
+            <Fragment>
                 <h2>Settings</h2>
                 <ul>
                     <li>Language</li>
@@ -12,7 +12,7 @@ class Settings extends React.Component {
                     <li>km/h vs mph</li>
                     <li>(Clear cache)</li>
                 </ul>
-            </main>
+            </Fragment>
         )
     }
 }

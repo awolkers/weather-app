@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 
 class Dashboard extends React.Component {
     
     render() {
         return (
-            <main className="main">
+            <Fragment>
                 <h2>Dashboard</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt est, facere minima minus quae voluptatibus. Aut dolore eaque est et in,
                     maiores molestiae provident ullam. At deleniti deserunt dolorem itaque omnis, rerum voluptatibus! Consectetur deleniti eveniet ipsa nemo
@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
                 saepe sequi, tempore tenetur voluptas!</p><p>Accusantium adipisci at blanditiis dolorum ea impedit, incidunt nam nesciunt nihil, nostrum quod
                 saepe similique! Architecto expedita id illo, molestiae nemo provident qui saepe tempora veritatis? Adipisci assumenda, blanditiis, consequuntur
                 dicta, doloremque ex libero magni nulla qui soluta ullam voluptatum?</p>
-            </main>
+            </Fragment>
         )
     }
 }
