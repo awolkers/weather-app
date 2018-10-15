@@ -11,13 +11,13 @@ class LocationSearch extends React.Component {
     handleSubmit = event => {
         event.preventDefault()
 
-        if (this.state.query !== '') {
+        if (this.state.query.trim() !== '') {
             this.props.searchLocation(this.state.query)
         }
     }
 
     handleChange = event => {
-        const query = event.currentTarget.value.trim()
+        const query = event.currentTarget.value;
         this.setState({ query })
     }
 

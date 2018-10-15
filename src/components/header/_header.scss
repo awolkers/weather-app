@@ -1,5 +1,6 @@
 .header {
     background: deeppink;
+    padding: $spacing-s;
 
     &__nav {
         list-style: none;
@@ -10,5 +11,15 @@
         li:not(:first-child) {
             margin-left: 1em;
         }
+    }
+}
+
+
+
+@media (min-width: $breakpoint-m) {
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }

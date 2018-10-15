@@ -19,6 +19,7 @@ class Aside extends React.Component {
                 />
                 <LocationList
                     locations={this.props.locations}
+                    toggleLocation={this.props.toggleLocation}
                     title="Favorites"
                 />
 

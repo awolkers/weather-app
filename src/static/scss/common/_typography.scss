@@ -2,4 +2,22 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: #333;
+}
+
+
+h1 {
+    margin: 0 0 $spacing-m;
+}
+
+h2 {
+    margin: 0 0 $spacing-s;
+}
+
+h3 {
+    margin: 0 0 $spacing-s;
+}
+
+h1 {
+    margin: 0 0 $spacing-xs;
 }

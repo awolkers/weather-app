@@ -19,8 +19,6 @@ export const searchLocations = async params => {
 
     const url = `${API_URI}find?${query}`
 
-    console.log()
-
     return await apiCall(url)
 }
 

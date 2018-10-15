@@ -63,9 +63,7 @@ class App extends React.Component {
     }
 
     clearSearchResult = () => {
-        console.log('hh',this.state);
         this.setState({ searchResult: {} })
-        console.log(this.state);
     }
 
     render() {
