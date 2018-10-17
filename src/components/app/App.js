@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { searchLocations } from '../../utils/apiHelpers'
 
-
 import Header from '../header/Header'
 import Aside from '../aside/Aside'
 import Footer from '../footer/Footer'
@@ -21,7 +20,7 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        const locations = JSON.parse(localStorage.getItem('locations'));
+        const locations = JSON.parse(localStorage.getItem('locations'))
 
         if (locations) {
             this.setState({ locations })
@@ -36,12 +35,12 @@ class App extends React.Component {
         const locations = { ...this.state.locations }
 
         if (locations[key]) {
-            delete locations[key];
+            delete locations[key]
         } else {
             locations[key] = this.state.searchResult[key]
         }
 
-        localStorage.setItem('locations', JSON.stringify(locations));
+        localStorage.setItem('locations', JSON.stringify(locations))
 
         this.setState({ locations })
     }
@@ -72,18 +71,22 @@ class App extends React.Component {
                 <Header />
                 <main className="main">
                     <Switch>
-                        <Route exact path="/" render={() => (
-                            <Dashboard/>
-                        )} />
-                        <Route exact path="/location/:locationId" render={({ match }) => (
-                            <Location
-                                locationId={match.params.locationId}
-                                locations={this.state.locations}
-                            />
-                        )} />
-                        <Route exact path="/settings" render={() => (
-                            <Settings/>
-                        )} />
+                        <Route exact path="/" render={() => <Dashboard />} />
+                        <Route
+                            exact
+                            path="/location/:locationId"
+                            render={({ match }) => (
+                                <Location
+                                    locationId={match.params.locationId}
+                                    locations={this.state.locations}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path="/settings"
+                            render={() => <Settings />}
+                        />
                         <Redirect to="/" />
                     </Switch>
                 </main>

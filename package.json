@@ -19,7 +19,7 @@
     "semi": false,
     "singleQuote": true,
     "tabWidth": 4,
-    "printWidth": 240
+    "printWidth": 80
   },
   "eslintConfig": {
     "extends": "react-app"

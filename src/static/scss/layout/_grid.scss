@@ -2,10 +2,9 @@
     display: grid;
 }
 
-
 @media (min-width: $breakpoint-m) {
     .app {
-        grid-template-columns:  300px 1fr;
+        grid-template-columns: 300px 1fr;
         grid-template-rows: auto 1fr auto;
         height: 100%;
     }
@@ -27,7 +26,4 @@
     .footer {
         grid-column: 1 / -1;
     }
-
 }
-
-

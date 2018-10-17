@@ -17,7 +17,7 @@ class LocationSearch extends React.Component {
     }
 
     handleChange = event => {
-        const query = event.currentTarget.value;
+        const query = event.currentTarget.value
         this.setState({ query })
     }
 
@@ -30,7 +30,12 @@ class LocationSearch extends React.Component {
     render() {
         return (
             <form className="search" onSubmit={this.handleSubmit}>
-                <input type="search" value={this.state.query} onChange={this.handleChange} placeholder="Enter a city, country or region" />
+                <input
+                    type="search"
+                    value={this.state.query}
+                    onChange={this.handleChange}
+                    placeholder="Enter a city, country or region"
+                />
                 <button type="submit">Search</button>
                 <button onClick={this.handleReset}>Clear</button>
             </form>

@@ -4,7 +4,6 @@
     padding: 0;
 
     li {
-
         &:not(:last-child) {
             margin-bottom: $spacing-s;
         }
@@ -49,16 +48,14 @@
             overflow: hidden;
             color: #ccc;
             position: relative;
-            transition: color .15s ease, opacity .15s ease;
-
+            transition: color 0.15s ease, opacity 0.15s ease;
 
             &:hover {
                 color: inherit;
             }
 
-
             &::after {
-                content: "\2605";
+                content: '\2605';
                 position: absolute;
                 text-indent: 0;
                 top: 50%;

@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 
 class Location extends React.Component {
-
     render() {
         return (
             <Fragment>
@@ -12,4 +11,4 @@ class Location extends React.Component {
     }
 }
 
-export default Location;
+export default Location

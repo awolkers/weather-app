@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 
 class Settings extends React.Component {
-    
     render() {
         return (
             <Fragment>
@@ -17,4 +16,4 @@ class Settings extends React.Component {
     }
 }
 
-export default Settings;
+export default Settings

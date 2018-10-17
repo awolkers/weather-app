@@ -1,4 +1,4 @@
-const API_URI = 'https://api.openweathermap.org/data/2.5/'
+import { api as config } from '../config'
 
 const PARAMS_BASE = {
     APPID: process.env.REACT_APP_OPENWEATHERMAP_APPID
@@ -17,7 +17,7 @@ export const searchLocations = async params => {
         type: 'like'
     })
 
-    const url = `${API_URI}find?${query}`
+    const url = `${config.url}find?${query}`
 
     return await apiCall(url)
 }

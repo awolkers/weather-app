@@ -1,10 +1,9 @@
-import React from "react";
+import React from 'react'
 
 import LocationSearch from '../locationsearch/LocationSearch'
 import LocationList from '../locationlist/LocationList'
 
 class Aside extends React.Component {
-    
     render() {
         return (
             <aside className="aside">
@@ -22,10 +21,9 @@ class Aside extends React.Component {
                     toggleLocation={this.props.toggleLocation}
                     title="Favorites"
                 />
-
             </aside>
         )
     }
 }
 
-export default Aside;
+export default Aside
