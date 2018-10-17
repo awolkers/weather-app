@@ -6,6 +6,7 @@ import LocationList from '../locationlist/LocationList'
 class Aside extends React.Component {
     renderSearchResult() {
         const {
+            settings,
             locations,
             searchResult,
             favorites,
@@ -15,6 +16,7 @@ class Aside extends React.Component {
         if (searchResult) {
             return (
                 <LocationList
+                    settings={settings}
                     locations={locations}
                     list={searchResult}
                     favorites={favorites}
@@ -26,6 +28,7 @@ class Aside extends React.Component {
     }
     render() {
         const {
+            settings,
             searchLocation,
             clearSearchResult,
             locations,
@@ -42,6 +45,7 @@ class Aside extends React.Component {
                 {this.renderSearchResult()}
 
                 <LocationList
+                    settings={settings}
                     locations={locations}
                     list={favorites}
                     favorites={favorites}

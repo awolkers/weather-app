@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { formatTemp } from '../../utils/weatherHelpers'
+import { formatTemp, formatWindSpeed } from '../../utils/weatherHelpers'
 
 class LocationListItem extends React.Component {
     toggleFavorite = event => {
@@ -10,9 +10,10 @@ class LocationListItem extends React.Component {
     }
 
     render() {
-        const { index, location, favorites } = this.props
+        const { index, location, favorites, settings } = this.props
+        console.log(settings)
         return (
-            <li>
+            <li className="locationlist__item">
                 <NavLink
                     to={`/location/${index}`}
                     className="locationlist__link"
@@ -30,10 +31,12 @@ class LocationListItem extends React.Component {
                         width="50"
                         height="50"
                     />
-                    <div>
-                        <span>{formatTemp(location.main.temp)}</span>{' '}
-                        <span>{location.wind.speed} m/sec</span>
-                    </div>
+                    <ul className="locationlist__link-meta">
+                        <li>{formatTemp(location.main.temp, settings)}</li>
+                        <li>
+                            {formatWindSpeed(location.wind.speed, settings)}
+                        </li>
+                    </ul>
                     <button
                         className="locationlist__link-favorite"
                         aria-pressed={favorites.includes(index)}

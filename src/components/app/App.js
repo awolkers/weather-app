@@ -15,7 +15,7 @@ class App extends React.Component {
         searchResult: null,
         settings: {
             lang: 'nl',
-            units: 'metric'
+            units: 'imperial'
         },
         favorites: []
     }
@@ -98,6 +98,7 @@ class App extends React.Component {
                                             match.params.locationId
                                         ]
                                     }
+                                    settings={this.state.settings}
                                 />
                             )}
                         />
@@ -110,6 +111,7 @@ class App extends React.Component {
                     </Switch>
                 </main>
                 <Aside
+                    settings={this.state.settings}
                     locations={this.state.locations}
                     favorites={this.state.favorites}
                     searchResult={this.state.searchResult}

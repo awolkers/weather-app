@@ -3,7 +3,7 @@
     margin: 0 0 $spacing-m;
     padding: 0;
 
-    li {
+    &__item {
         &:not(:last-child) {
             margin-bottom: $spacing-s;
         }
@@ -63,6 +63,18 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 font-size: 20px;
+            }
+        }
+
+        &-meta {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li:not(:last-child) {
+                margin-right: $spacing-m;
             }
         }
     }

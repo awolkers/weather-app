@@ -3,7 +3,14 @@ import LocationListItem from '../locationlist/LocationListItem'
 
 class LocationList extends React.Component {
     render() {
-        const { title, locations, list, favorites, toggleFavorite } = this.props
+        const {
+            title,
+            locations,
+            list,
+            favorites,
+            toggleFavorite,
+            settings
+        } = this.props
 
         if (list.length) {
             return (
@@ -14,6 +21,7 @@ class LocationList extends React.Component {
                             <LocationListItem
                                 key={key}
                                 index={key}
+                                settings={settings}
                                 location={locations[key]}
                                 favorites={favorites}
                                 toggleFavorite={toggleFavorite}
