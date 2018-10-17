@@ -17,13 +17,22 @@ export const searchLocations = async params => {
         type: 'like'
     })
 
-    const url = `${config.url}find?${query}`
+    const url = `${config.url}weather?${query}`
 
     return await apiCall(url)
 }
 
-const apiCall = async url => {
-    let response = await fetch(url)
-    if (response.ok) return await response.json()
-    throw new Error(response.status)
+export const getLocations = async params => {
+    const query = queryString({
+        ...PARAMS_BASE,
+        ...params
+    })
+
+    const url = `${config.url}group?${query}`
+
+    return await apiCall(url)
+}
+
+const apiCall = url => {
+    return fetch(url).then(response => response.json())
 }

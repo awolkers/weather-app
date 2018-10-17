@@ -3,19 +3,20 @@ import LocationListItem from '../locationlist/LocationListItem'
 
 class LocationList extends React.Component {
     render() {
-        const { title, locations, toggleLocation } = this.props
+        const { title, locations, list, favorites, toggleFavorite } = this.props
 
-        if (Object.keys(locations).length) {
+        if (list.length) {
             return (
                 <Fragment>
                     <h2>{title}</h2>
                     <ul className="locationlist">
-                        {Object.keys(locations).map(key => (
+                        {list.map(key => (
                             <LocationListItem
                                 key={key}
                                 index={key}
                                 location={locations[key]}
-                                toggleLocation={toggleLocation}
+                                favorites={favorites}
+                                toggleFavorite={toggleFavorite}
                             />
                         ))}
                     </ul>

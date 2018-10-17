@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { searchLocations } from '../../utils/apiHelpers'
+import { searchLocations, getLocations } from '../../utils/apiHelpers'
 
 import Header from '../header/Header'
 import Aside from '../aside/Aside'
@@ -12,37 +12,48 @@ import Location from '../location/Location'
 class App extends React.Component {
     state = {
         locations: {},
-        searchResult: {},
+        searchResult: null,
         settings: {
             lang: 'nl',
             units: 'metric'
+        },
+        favorites: []
+    }
+
+    componentWillMount = async () => {
+        const favorites = JSON.parse(localStorage.getItem('favorites'))
+
+        if (favorites) {
+            const locations = { ...this.state.locations }
+            const params = {
+                id: favorites.join(','),
+                lang: this.state.settings.lang,
+                units: this.state.settings.units
+            }
+
+            const result = await getLocations(params)
+
+            result.list.forEach(location => {
+                locations[location.id] = location
+            })
+
+            this.setState({ favorites, locations })
         }
     }
 
-    componentWillMount() {
-        const locations = JSON.parse(localStorage.getItem('locations'))
+    toggleFavorite = key => {
+        const favorites = [...this.state.favorites]
+        const index = favorites.indexOf(key)
 
-        if (locations) {
-            this.setState({ locations })
-        }
-    }
-
-    componentDidMount() {
-        console.log('TODO: update locations via api')
-    }
-
-    toggleLocation = key => {
-        const locations = { ...this.state.locations }
-
-        if (locations[key]) {
-            delete locations[key]
+        if (index === -1) {
+            favorites.push(key)
         } else {
-            locations[key] = this.state.searchResult[key]
+            favorites.splice(index, 1)
         }
 
-        localStorage.setItem('locations', JSON.stringify(locations))
+        localStorage.setItem('favorites', JSON.stringify(favorites))
 
-        this.setState({ locations })
+        this.setState({ favorites })
     }
 
     searchLocation = async query => {
@@ -52,17 +63,22 @@ class App extends React.Component {
             units: this.state.settings.units
         }
         const result = await searchLocations(params)
+        const locations = { ...this.state.locations }
+        let searchResult = null
 
-        const searchResult = result.list.reduce((obj, item) => {
-            obj[item.id] = item
-            return obj
-        }, {})
+        if (result.cod === 200) {
+            searchResult = [result.id]
+            locations[result.id] = result
+        }
 
-        this.setState({ searchResult })
+        this.setState({
+            locations,
+            searchResult
+        })
     }
 
     clearSearchResult = () => {
-        this.setState({ searchResult: {} })
+        this.setState({ searchResult: [] })
     }
 
     render() {
@@ -77,8 +93,11 @@ class App extends React.Component {
                             path="/location/:locationId"
                             render={({ match }) => (
                                 <Location
-                                    locationId={match.params.locationId}
-                                    locations={this.state.locations}
+                                    location={
+                                        this.state.locations[
+                                            match.params.locationId
+                                        ]
+                                    }
                                 />
                             )}
                         />
@@ -92,10 +111,11 @@ class App extends React.Component {
                 </main>
                 <Aside
                     locations={this.state.locations}
+                    favorites={this.state.favorites}
                     searchResult={this.state.searchResult}
                     searchLocation={this.searchLocation}
                     clearSearchResult={this.clearSearchResult}
-                    toggleLocation={this.toggleLocation}
+                    toggleFavorite={this.toggleFavorite}
                 />
                 <Footer />
             </div>
