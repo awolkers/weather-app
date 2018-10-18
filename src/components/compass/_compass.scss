@@ -1,0 +1,23 @@
+.compass {
+    border: 1px solid currentColor;
+    display: inline-block;
+    text-indent: -9999px;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 12px;
+    vertical-align: middle;
+    margin-top: -3px;
+
+    &::before {
+        content: '\2192';
+        position: absolute;
+        text-indent: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

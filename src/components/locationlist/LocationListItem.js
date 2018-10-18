@@ -2,6 +2,8 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { formatTemp, formatWindSpeed } from '../../utils/weatherHelpers'
 
+import Compass from '../compass/Compass'
+
 class LocationListItem extends React.Component {
     toggleFavorite = event => {
         event.preventDefault()
@@ -34,7 +36,8 @@ class LocationListItem extends React.Component {
                     <ul className="locationlist__link-meta">
                         <li>{formatTemp(location.main.temp, settings)}</li>
                         <li>
-                            {formatWindSpeed(location.wind.speed, settings)}
+                            {formatWindSpeed(location.wind.speed, settings)}{' '}
+                            <Compass degrees={location.wind.deg} />
                         </li>
                     </ul>
                     <button

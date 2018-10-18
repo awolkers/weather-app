@@ -1,3 +1,5 @@
+import { round } from './mathHelpers'
+
 export const formatTemp = (kelvin, settings) => {
     let temp, unit
 
@@ -66,6 +68,25 @@ export const formatWindSpeed = (mps, settings) => {
     return `${round(speed, 1)} ${unit}`
 }
 
-export const round = (value, decimals) => {
-    return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals)
+export const windDegreesToCompass = degrees => {
+    const val = Math.floor(degrees / 22.5 + 0.5)
+    var directions = [
+        'N',
+        'NNE',
+        'NE',
+        'ENE',
+        'E',
+        'ESE',
+        'SE',
+        'SSE',
+        'S',
+        'SSW',
+        'SW',
+        'WSW',
+        'W',
+        'WNW',
+        'NW',
+        'NNW'
+    ]
+    return directions[val % 16]
 }
