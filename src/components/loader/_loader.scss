@@ -1,0 +1,48 @@
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(#000, 0.3);
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    pointer-events: none;
+
+    &[aria-busy='true'] {
+        opacity: 1;
+        transition: opacity 0.5s 0.35s ease-in;
+        pointer-events: auto;
+        &::before {
+            animation-play-state: running;
+        }
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: $spacing-xs solid #fff;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        transform: translate(-50%, -50%);
+        transform-origin: 50% 50%;
+        animation: loader 0.8s infinite paused
+            cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        will-change: transform;
+    }
+}
+
+@keyframes loader {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+}

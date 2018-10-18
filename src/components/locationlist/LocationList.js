@@ -12,7 +12,7 @@ class LocationList extends React.Component {
             settings
         } = this.props
 
-        if (list.length) {
+        if (list && list.length && Object.keys(locations).length) {
             return (
                 <Fragment>
                     <h2>{title}</h2>

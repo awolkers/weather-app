@@ -8,37 +8,55 @@ import Footer from '../footer/Footer'
 import Dashboard from '../dashboard/Dashboard'
 import Settings from '../settings/Settings'
 import Location from '../location/Location'
+import Loader from '../loader/Loader'
 
 class App extends React.Component {
-    state = {
-        locations: {},
-        searchResult: null,
-        settings: {
-            lang: 'nl',
-            units: 'imperial'
-        },
-        favorites: []
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            locations: {},
+            searchResult: null,
+            settings: {
+                lang: 'nl',
+                temp: 'celsius',
+                wind: 'kmh',
+                ...JSON.parse(localStorage.getItem('settings'))
+            },
+            favorites: JSON.parse(localStorage.getItem('favorites')) || [],
+            isLoading: false,
+            error: null
+        }
     }
 
-    componentWillMount = async () => {
-        const favorites = JSON.parse(localStorage.getItem('favorites'))
+    componentDidMount = async () => {
+        const { favorites, locations } = this.state
 
-        if (favorites) {
-            const locations = { ...this.state.locations }
+        if (favorites.length) {
             const params = {
                 id: favorites.join(','),
-                lang: this.state.settings.lang,
-                units: this.state.settings.units
+                lang: this.state.settings.lang
             }
 
+            this.setState({ isLoading: true })
             const result = await getLocations(params)
 
             result.list.forEach(location => {
                 locations[location.id] = location
             })
 
-            this.setState({ favorites, locations })
+            this.setState({ locations, isLoading: false })
         }
+    }
+
+    updateSettings = updatedSettings => {
+        const settings = {
+            ...this.state.settings,
+            ...updatedSettings
+        }
+
+        localStorage.setItem('settings', JSON.stringify(settings))
+        this.setState({ settings })
     }
 
     toggleFavorite = key => {
@@ -57,10 +75,11 @@ class App extends React.Component {
     }
 
     searchLocation = async query => {
+        this.setState({ isLoading: true })
+
         const params = {
             q: query,
-            lang: this.state.settings.lang,
-            units: this.state.settings.units
+            lang: this.state.settings.lang
         }
         const result = await searchLocations(params)
         const locations = { ...this.state.locations }
@@ -73,7 +92,8 @@ class App extends React.Component {
 
         this.setState({
             locations,
-            searchResult
+            searchResult,
+            isLoading: false
         })
     }
 
@@ -84,6 +104,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
+                <Loader isLoading={this.state.isLoading} />
                 <Header />
                 <main className="main">
                     <Switch>
@@ -105,7 +126,12 @@ class App extends React.Component {
                         <Route
                             exact
                             path="/settings"
-                            render={() => <Settings />}
+                            render={() => (
+                                <Settings
+                                    settings={this.state.settings}
+                                    updateSettings={this.updateSettings}
+                                />
+                            )}
                         />
                         <Redirect to="/" />
                     </Switch>

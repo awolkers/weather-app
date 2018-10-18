@@ -11,7 +11,7 @@ class LocationListItem extends React.Component {
 
     render() {
         const { index, location, favorites, settings } = this.props
-        console.log(settings)
+
         return (
             <li className="locationlist__item">
                 <NavLink
